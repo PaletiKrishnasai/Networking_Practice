@@ -1,11 +1,13 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <sys/types.h>
-#include <sys/socket.h>
-#include <netinet/in.h>
-#include <arpa/inet.h>
-#include <string.h>
-#include <unistd.h>
+#include<stdio.h>
+#include<stdlib.h>
+#include<sys/types.h>
+#include<sys/socket.h>
+#include<sys/time.h>
+#include<netinet/in.h>
+#include<string.h>
+#include<unistd.h>
+#include<arpa/inet.h>
+#include<time.h>
 
 /*int c_sock;
 
@@ -28,6 +30,7 @@ void clientcreate(int port ,int anyip , char IPADDR[])
 int main()
 
 {
+	time_t start,end,diff;
 	int c_sock;
 	c_sock=socket(AF_INET,SOCK_DGRAM,0);
 	printf("%d\n",c_sock );
@@ -61,7 +64,7 @@ int main()
 
 	sendto(c_sock,filename,sizeof(filename),0,(struct sockaddr*)&client, sizeof(client));
 	sendto(c_sock,ext,sizeof(ext),0,(struct sockaddr*)&client, sizeof(client));
-
+	time(&start);
 	while(!feof(fp))
 	{
 		usleep(5);
@@ -69,12 +72,12 @@ int main()
 		sendto(c_sock,endoffile,sizeof(endoffile),0,(struct sockaddr*)&client, sizeof(client));
 		sendto(c_sock,buf,sizeof(buf),0,(struct sockaddr*)&client, sizeof(client));
 
-	}
+	}time(&end);
 		printf("File end\n");
-
+	diff = end - start;
 	endoffile[0]='1';
 	sendto(c_sock,endoffile,sizeof(endoffile),0,(struct sockaddr*)&client, sizeof(client));
-
+	printf("Latency :%ld secs",diff);
 	
 	close(c_sock);
 	return 0;
