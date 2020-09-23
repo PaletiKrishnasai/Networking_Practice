@@ -4,7 +4,10 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
+#include <netinet/in.h>
+#include <sys/time.h>
 #include <string.h>
+#include <time.h>
 #include <unistd.h>
 	int c_sock;
 
@@ -42,6 +45,7 @@ int main()
 	if(connect(c_sock,(struct sockaddr*)&client,sizeof(client))==-1)
 		printf(" not Connected \n");
 	int n;*/
+	time_t start , end, diff;
 	int check = clientcreate(8080,1,"");
 	if (check == 1)
 	{
@@ -69,25 +73,30 @@ int main()
 	printf("%s\n",filename_ext );
 
 	FILE *fp;
-	fp = fopen(filename_ext,"r");
+	fp = fopen(filename_ext,"rb");
 	printf("File %s is opened\n",filename_ext );
 
 	send(c_sock,filename,sizeof(filename),0);
 	send(c_sock,ext,sizeof(ext),0);
 
+	
+	time(&start);
 	while(!feof(fp))
 	{
 		fscanf(fp,"%c",&buf[0]);
 		send(c_sock,endoffile,sizeof(endoffile),0);
 		send(c_sock,buf,sizeof(buf),0);
 
-	}
+	} time(&end);
+
 		printf("File end\n");
 
 	endoffile[0]='1';
 	send(c_sock,endoffile,sizeof(endoffile),0);
 
 	}
+	diff = end - start;
+	printf("Latency : %ld",diff);
 	close(c_sock);
 	return 0;
 }
