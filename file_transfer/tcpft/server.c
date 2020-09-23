@@ -4,7 +4,10 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
+#include <netinet/in.h>
+#include <sys/time.h>
 #include <string.h>
+#include <time.h>
 #include <unistd.h>
 
 
@@ -94,7 +97,7 @@ int main()
 		strcat(filename_ext,ext);
 
 		FILE *fp;
-		fp = fopen(filename_ext,"w");
+		fp = fopen(filename_ext,"wb");
 
 		int flag = 0;
 		while (flag ==0)
