@@ -1,0 +1,18 @@
+Instructions :
+
+run on different terminals ( if the code gets buggy, close the terminal and re run it again )
+Usage: ./a.out <neighborFile> <vectorFile> <nodeNumber> <Port#> <#Of nodes>
+
+Reffered medium articles and used portions of existing online code snippets.
+socket connection fails sometimes due to OS issues.
+
+Utilizing the Distance Vector Algorithm to find the most cost-efficient path between multiple nodes. Ability to view 
+that node's neighbors, update the cost to travel to its neighbors.
+
+ --->   Options
+ - print- Print Current Node's DV Table
+ - refresh - Send Current Node's DV Table of Neighbors
+ - update - Update Current Node's DV table
+ - route - Display's the lowest cost route to desired node and which node to hop to
+ 
+
