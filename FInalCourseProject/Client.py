@@ -33,7 +33,7 @@ def calculate(command):
 		r = 6
 		area = pi*r*r
 		circum = 2*pi*r
-		command_output = "The Area is: "+str(area)+"\nThe Circumference is: "+str(circum)+"\n"
+		command_output = "The Fixed radius is : "+str(r)+"\nThe Value of PI : "+str(pi)+"\nThe Area Calculated is: "+str(area)+"\nThe Circumference Calculated is: "+str(circum)+"\n"
 		return command_output
 
 
@@ -131,7 +131,7 @@ class RPC:
 		self.__root.mainloop()
 		
 	def __command(self):
-		command = simpledialog.askstring("Command","Enter the number of points to take")
+		command = simpledialog.askstring("Command","Enter the number of points to take ")
 		command_output = "Output"
 		if command is not None:
 			"""Code for output from socket here"""
