@@ -131,7 +131,7 @@ class RPC:
 		self.__root.mainloop()
 		
 	def __command(self):
-		command = simpledialog.askstring("Command","Enter the command to be performed")
+		command = simpledialog.askstring("Command","Enter the number of points to take")
 		command_output = "Output"
 		if command is not None:
 			"""Code for output from socket here"""
